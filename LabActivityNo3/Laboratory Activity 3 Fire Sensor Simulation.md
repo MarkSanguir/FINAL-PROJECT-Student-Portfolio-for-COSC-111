@@ -18,11 +18,8 @@ The Alarm: If both conditions are met, it panics: blinking a red light and sound
 The system uses two different senses to get a clear picture of what is happening, similar to how humans use both sight and touch.
 
 The Sensors (The Inputs):
-
-Heat Sensor (Thermistor):
-
-Shutterstock
-A component that changes its electrical flow based on temperature. * Light Sensor (Photoresistor): A component that becomes more conductive when light hits it. * The Brain: The Arduino takes the raw electricity coming from these sensors and translates it into numbers it can understand (like "Degrees Celsius").
+  Heat Sensor (Thermistor): A component that changes its electrical flow based on temperature. 
+  Light Sensor (Photoresistor): A component that becomes more conductive when light hits it. 
 
 The Alarm (The Outputs):
 
