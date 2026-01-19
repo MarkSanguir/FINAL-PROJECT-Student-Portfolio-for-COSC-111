@@ -20,10 +20,7 @@ The system uses two different senses to get a clear picture of what is happening
 The Sensors (The Inputs):
   Heat Sensor (Thermistor): A component that changes its electrical flow based on temperature. 
   Light Sensor (Photoresistor): A component that becomes more conductive when light hits it. 
-
-The Alarm (The Outputs):
-
-A Red LED and a Buzzer act as the warning signals.
+  The Alarm (The Outputs):A Red LED and a Buzzer act as the warning signals.
 
 ### Code Explanation
 The code does the heavy lifting to turn electrical signals into human-readable data.
