@@ -43,4 +43,4 @@ Text Processing: Teaching a machine to read words and ignore capitalization diff
 
 Blocking Code: A style of programming where the code pauses all other tasks (like sensing light) to focus entirely on one thing (blinking the alarm). text data (converting to lowercase) to make user interfaces more robust and user-friendly.
     
-- **Blocking vs. Non-Blocking:** This code uses a "blocking" `while` loop for the alarm, meaning the sensor stops reading new data while the alarm is active.
+Blocking vs. Non-Blocking: This code uses a "blocking" `while` loop for the alarm, meaning the sensor stops reading new data while the alarm is active.
