@@ -47,4 +47,4 @@ Clean Organization: Splitting code into different files so it is easier to read 
 
 Text Interface: Controlling a machine using simple text commands rather than a graphical mouse-click interface.
     
-- **Command Line Interface (CLI):** Building a text-based user interface (UI) to interact with hardware.
+Command Line Interface (CLI): Building a text-based user interface (UI) to interact with hardware.
