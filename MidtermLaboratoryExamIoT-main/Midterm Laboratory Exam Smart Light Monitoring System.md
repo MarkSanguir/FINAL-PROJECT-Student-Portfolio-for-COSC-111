@@ -1,74 +1,64 @@
-# Midterm Laboratory Exam: Smart Light Monitoring System
+# Project Overview: The "Smart" Light Monitor
+Think of this project as your "Midterm Exam" application that combines everything you've learned so far into one smart device. It is a Dual-Mode Light Monitor that acts like a traffic light for brightness: it reads how bright a room is and turns on a Green, Yellow, or Red LED to match the intensity.
 
-### Overview
-
-This project serves as a comprehensive "Midterm Exam" application, synthesizing concepts from previous activities into a cohesive "Smart" system. It implements a **Dual-Mode Light Monitor** that reads ambient light levels and visually indicates intensity using a traffic-light system (Green, Yellow, Red). Unique to this project is the ability to switch between an "Automatic" mode with fixed rules and a "Manual" mode where the user can dynamically tune sensitivity thresholds via text commands.
+The coolest feature? It has a "brain" with two modes: Automatic (it decides for itself) and Manual (you tell it what to do using text commands).
 
 ### What This Project Does
+This system is an environmental monitor with two distinct personalities:
 
-The system acts as an intelligent environmental monitor with two distinct personalities:
+Automatic Mode (Default): The system runs on "factory settings." It automatically decides if it’s cloudy or clear based on fixed rules.
 
-1. **Automatic Mode (Default):** The system behaves autonomously, categorizing light levels into "Cloudy" or "Clear" based on pre-set factory standards. It automatically lights up Green (Low Light), Yellow (Medium Light), or Red (High Light)1.
-    
-2. **Manual Mode:** The user takes control. Through the Serial Monitor, the user can type commands to change the "Low" and "High" trigger points on the fly, allowing the system to adapt to different environments without rewriting the code2222.
-    
-    +1
-    
-3. **Real-Time Dashboard:** The system constantly reports data back to the computer, displaying the current light percentage, the active LED, and the current operating mode every second3.
-    
+Green: Low Light
+
+Yellow: Medium Light
+
+Red: High Light
+
+Manual Mode: You take control! You can type commands into the Serial Monitor to change the definition of "Low" and "High" light on the fly. This lets you adapt the system to a dark bedroom or a bright classroom without rewriting the code.
+
+Real-Time Dashboard: The system constantly texts your computer, updating you every second with the current light percentage, which LED is on, and which mode is running.
 
 ### How the System Works
+The project mixes hardware sensors with smart coding logic.
 
-The project integrates analog sensing with complex string parsing logic.
+The "Eye" (Inputs): A Photoresistor (light sensor) connected to pin A0 measures how much light is in the room.
 
-- **Inputs:** A **Photoresistor** connected to analog pin A0 measures the light intensity4.
-    
-- **Processing:**
-    
-    - The raw sensor data (0-1023) is mapped to a percentage (0-100%) for easier human readability5.
-        
-    - The code checks if `automaticMode` is true or false to decide which logic path to follow666.
-        
-        +1
-        
-- **Outputs:** Three LEDs—Green (Pin 11), Yellow (Pin 12), and Red (Pin 13)—serve as visual indicators7.
-    
-- **Interface:** A Command Line Interface (CLI) allows the user to type commands like `SET LOW 30` to adjust behavior in real-time.
-    
+The "Brain" (Processing):
 
-### Code Explanation
+It takes the raw sensor data (0–1023) and converts it into a readable percentage (0–100%).
 
-The code is structured around a "State Machine" concept, where the behavior changes entirely based on the `automaticMode` variable.
+It checks a simple switch in the code (automaticMode) to decide whether to follow its own rules or listen to yours.
 
-- Variable Thresholding:
-    
-    Unlike previous activities with fixed numbers, this project uses variables lowThreshold (default 40) and highThreshold (default 70)8. In Manual mode, these variables can be overwritten by user input.
-    
-- **The Logic Core (`loop`):**
-    
-    - **Automatic Logic:** Uses hard-coded `if/else` blocks. If light is $\le$ 40%, it sets the environment to "Cloudy" and turns on Green9.
-        
-    - **Manual Logic:** Uses the mutable variables `lowThreshold` and `highThreshold` to decide which LED to light up. This allows the "Green" zone to be expanded or contracted dynamically10.
-        
-- Command Parsing (processCommand):
-    
-    This function acts as the "brain" of the user interface. It analyzes incoming strings:
-    
-    - `MODE AUTO` / `MODE MANUAL`: Toggles the boolean flag `automaticMode`11.
-        
-    - `SET LOW <value>`: Parses the number after the text (using `substring(8)`) and updates the `lowThreshold` variable—but _only_ if the system is in Manual mode12.
-        
-    - **Validation:** It includes safety checks (e.g., you can't set the Low threshold higher than the High threshold) to prevent logic errors13131313.
-        
-        +1
-        
+The "Signal" (Outputs): Three LEDs (Green, Yellow, Red) light up to show the light level visually.
 
-### IoT Concepts Applied
+The Interface: A command line (like a chat box) lets you type things like SET LOW 30 to instantly change the device's behavior.
 
-- **Dynamic Configuration:** The ability to change device parameters (thresholds) at runtime without re-uploading the code. This is critical for IoT devices deployed in changing environments.
-    
-- **Command Parsing:** processing complex string inputs (text + numbers) to extract meaningful commands.
-    
-- **Mode Switching:** Implementing distinct behaviors (states) within a single device and allowing users to toggle between them.
-    
-- **Data Normalization:** Using `map()` to convert raw sensor integers into human-friendly percentages14.
+Code Explanation: Under the Hood
+The code is built like a State Machine, meaning its behavior changes completely depending on which "State" (Auto or Manual) it is in.
+
+Flexible Thresholds: Unlike previous activities where numbers were set in stone, this project uses variables. In Manual mode, you can overwrite these variables just by typing.
+
+### The Logic Loop:
+
+Automatic Logic: Uses fixed if/else rules. (e.g., "If light is less than 40%, turn Green").
+
+Manual Logic: Uses your custom settings to decide which LED to turn on. This allows you to expand or shrink the "Green Zone" dynamically.
+
+Texting the Device (Command Parsing): This part of the code acts as a translator. It reads the text you type:
+
+MODE AUTO / MODE MANUAL: Switches the system's personality.
+
+SET LOW <number>: Picks out the number you typed and updates the settings—but only if you are in Manual mode.
+
+Safety Checks: The code is smart enough to stop you from making logic errors (like setting the "Low" limit higher than the "High" limit).
+
+### Why This Matters (IoT Concepts)
+This project demonstrates how real-world smart devices work:
+
+Dynamic Configuration: Just like you can change your phone's brightness settings without buying a new phone, this code lets you change the device settings without re-uploading the sketch.
+
+Command Parsing: It teaches the device how to understand complex instructions (text + numbers) from a human.
+
+Mode Switching: It shows how one device can have multiple behaviors that toggle back and forth.
+
+Data Normalization: It translates confusing machine numbers (0-1023) into human-friendly percentages (0-100%).
