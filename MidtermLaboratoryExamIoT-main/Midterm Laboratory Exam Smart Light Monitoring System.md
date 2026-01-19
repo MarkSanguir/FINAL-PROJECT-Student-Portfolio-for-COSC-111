@@ -1,64 +1,50 @@
-# Project Overview: The "Smart" Light Monitor
-Think of this project as your "Midterm Exam" application that combines everything you've learned so far into one smart device. It is a Dual-Mode Light Monitor that acts like a traffic light for brightness: it reads how bright a room is and turns on a Green, Yellow, or Red LED to match the intensity.
+# Project Overview
+This project is a "Smart Light Monitor" that acts as a midterm exam, bringing together everything learned so far. It measures room brightness and shows the level using a traffic-light system (Green, Yellow, Red). Its main feature is the ability to switch between two modes: an Automatic mode that follows fixed rules, and a Manual mode that lets you adjust the settings yourself using text commands.
 
-The coolest feature? It has a "brain" with two modes: Automatic (it decides for itself) and Manual (you tell it what to do using text commands).
+### What It Does
+The system works in two distinct ways:
 
-### What This Project Does
-This system is an environmental monitor with two distinct personalities:
+Automatic Mode (Default): The system runs on autopilot. It uses factory settings to decide if it is dark or bright and turns on the corresponding LED (Green for low light, Yellow for medium, Red for high).
 
-Automatic Mode (Default): The system runs on "factory settings." It automatically decides if it’s cloudy or clear based on fixed rules.
+Manual Mode: You are in control. You can type commands to change the specific light levels that trigger the LEDs. This allows you to adapt the device to different rooms without needing to rewrite the code.
 
-Green: Low Light
+Live Dashboard: The system constantly sends updates to your computer screen, showing the current light percentage, which LED is on, and which mode is active.
 
-Yellow: Medium Light
+### How It Works
+The system combines a light sensor with a feature that understands text commands.
 
-Red: High Light
+Input: A light sensor (photoresistor) detects how bright the room is.
 
-Manual Mode: You take control! You can type commands into the Serial Monitor to change the definition of "Low" and "High" light on the fly. This lets you adapt the system to a dark bedroom or a bright classroom without rewriting the code.
+Processing: It converts the sensor's raw data into a simple 0-100% score that is easy to read. It then checks which mode is active to decide how to react.
 
-Real-Time Dashboard: The system constantly texts your computer, updating you every second with the current light percentage, which LED is on, and which mode is running.
+Output: Three LEDs (Green, Yellow, Red) light up to visually show the light intensity.
 
-### How the System Works
-The project mixes hardware sensors with smart coding logic.
+Control: You can type simple text commands (like SET LOW 30) to change the settings instantly.
 
-The "Eye" (Inputs): A Photoresistor (light sensor) connected to pin A0 measures how much light is in the room.
+### Code Explanation
+The programming is built around the concept of "Modes"—the device behaves completely differently depending on which mode you choose.
 
-The "Brain" (Processing):
+Flexible Settings: Unlike previous activities where the numbers were permanent, this project uses changeable settings. In Manual mode, you can overwrite the defaults with your own numbers.
 
-It takes the raw sensor data (0–1023) and converts it into a readable percentage (0–100%).
+### The Logic:
 
-It checks a simple switch in the code (automaticMode) to decide whether to follow its own rules or listen to yours.
+Automatic Logic: Follows strict, unchangeable rules (e.g., if light is under 40%, turn Green).
 
-The "Signal" (Outputs): Three LEDs (Green, Yellow, Red) light up to show the light level visually.
+Manual Logic: Uses your custom numbers to decide when to switch lights.
 
-The Interface: A command line (like a chat box) lets you type things like SET LOW 30 to instantly change the device's behavior.
+Understanding Commands: The code has a "brain" that reads what you type.
 
-Code Explanation: Under the Hood
-The code is built like a State Machine, meaning its behavior changes completely depending on which "State" (Auto or Manual) it is in.
+It looks for keywords like MODE AUTO or MODE MANUAL to switch behaviors.
 
-Flexible Thresholds: Unlike previous activities where numbers were set in stone, this project uses variables. In Manual mode, you can overwrite these variables just by typing.
+It reads commands like SET LOW followed by a number to update the settings.
 
-### The Logic Loop:
+Safety Checks: It includes safeguards to prevent errors, such as stopping you from setting the "Low" limit higher than the "High" limit.
 
-Automatic Logic: Uses fixed if/else rules. (e.g., "If light is less than 40%, turn Green").
+### Key Concepts Applied
+Real-Time Adjustments: The ability to change how the device works while it is running, without needing to restart or reprogram it.
 
-Manual Logic: Uses your custom settings to decide which LED to turn on. This allows you to expand or shrink the "Green Zone" dynamically.
+Reading Text: Teaching the device to understand complex instructions (text combined with numbers).
 
-Texting the Device (Command Parsing): This part of the code acts as a translator. It reads the text you type:
+Mode Switching: Creating a single device that can toggle between two completely different behaviors.
 
-MODE AUTO / MODE MANUAL: Switches the system's personality.
-
-SET LOW <number>: Picks out the number you typed and updates the settings—but only if you are in Manual mode.
-
-Safety Checks: The code is smart enough to stop you from making logic errors (like setting the "Low" limit higher than the "High" limit).
-
-### Why This Matters (IoT Concepts)
-This project demonstrates how real-world smart devices work:
-
-Dynamic Configuration: Just like you can change your phone's brightness settings without buying a new phone, this code lets you change the device settings without re-uploading the sketch.
-
-Command Parsing: It teaches the device how to understand complex instructions (text + numbers) from a human.
-
-Mode Switching: It shows how one device can have multiple behaviors that toggle back and forth.
-
-Data Normalization: It translates confusing machine numbers (0-1023) into human-friendly percentages (0-100%).
+Data Translation: Converting confusing raw sensor numbers into a friendly percentage format.
