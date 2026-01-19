@@ -1,7 +1,5 @@
 # Laboratory Activity #3: Fire Sensor Simulation
 
-Here is a simplified explanation of the project, focusing on how the system "feels" the world around it.
-
 ### Overview: The Fire Detector
 This project flips the script from previous activities. Instead of telling the Arduino to do something (like turning on a light), we are teaching it to sense something. It simulates a fire alarm by reading the environment to detect danger.
 
